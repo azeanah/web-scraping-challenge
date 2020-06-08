@@ -1,0 +1,21 @@
+from flask import flaskfrom database.db import initialize_db
+
+app = Flask(__name__)
+
+app.config['MONGODB_SETTINGS'] = {
+    'db': 'mars_mission',
+    'host': 'mars_challenge',
+    'port': '27017'
+}
+db = MongoEngine()
+db.init_app(app)
+
+
+class User(db.Document):
+    final_image = db.StringField(final_image)
+    title = db.StringField(title)
+    body = db.StringField(body)
+    hemisphere_image_urls = db.StringField(hemisphere_image_urls)
+
+if __name__ == "__main__":
+    app.run(debug=True)
